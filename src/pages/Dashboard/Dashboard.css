@@ -1,0 +1,157 @@
+/* =====================================================
+   Dashboard Content Styles
+   ===================================================== */
+
+.dashboard-content {
+  flex: 1;
+  padding: var(--space-8);
+  animation: fadeSlideUp 0.5s ease both;
+  overflow-y: auto;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Welcome */
+.dashboard-welcome {
+  margin-bottom: var(--space-8);
+}
+
+.dashboard-welcome-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold-400);
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+}
+
+.dashboard-welcome-title {
+  font-family: var(--font-serif);
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.dashboard-welcome-subtitle {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+}
+
+/* Stat Cards */
+.dashboard-placeholder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
+}
+
+.dashboard-stat-card {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold-500), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.dashboard-stat-card:hover {
+  border-color: var(--color-border-hover);
+  box-shadow: var(--shadow-card);
+}
+
+.dashboard-stat-card:hover::before { opacity: 1; }
+
+.dashboard-stat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(212, 168, 67, 0.08);
+  border: 1px solid rgba(212, 168, 67, 0.12);
+}
+
+.dashboard-stat-icon svg {
+  width: 20px; height: 20px;
+  stroke: var(--color-gold-400);
+  fill: none; stroke-width: 1.75;
+}
+
+.dashboard-stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-family: var(--font-serif);
+  line-height: 1;
+}
+
+.dashboard-stat-label {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.dashboard-stat-sublabel {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* Coming Soon Banner */
+.dashboard-coming-soon {
+  background: var(--color-bg-surface);
+  border: 1px dashed rgba(212, 168, 67, 0.2);
+  border-radius: var(--radius-lg);
+  padding: var(--space-12) var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-4);
+}
+
+.dashboard-coming-soon-icon {
+  width: 60px; height: 60px;
+  border-radius: var(--radius-xl);
+  background: rgba(212, 168, 67, 0.06);
+  border: 1px solid rgba(212, 168, 67, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-coming-soon-icon svg {
+  width: 28px; height: 28px;
+  stroke: var(--color-gold-400);
+  fill: none; stroke-width: 1.5; opacity: 0.8;
+}
+
+.dashboard-coming-soon h3 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--color-text-primary);
+}
+
+.dashboard-coming-soon p {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  max-width: 360px;
+}
