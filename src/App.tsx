@@ -5,6 +5,7 @@ import Login from './pages/Login/Login';
 import DashboardLayout from './layouts/DashboardLayout';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Ventas from './pages/Ventas/Ventas';
+import SwitchUser from './pages/SwitchUser/SwitchUser';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
 
           {/* Protected routes */}
           <Route element={<PrivateRoute />}>
+            <Route path="/switch-user" element={<SwitchUser />} />
             <Route path="/dashboard" element={<DashboardLayout />}>
               <Route index element={<Dashboard />} />
               <Route path="ventas" element={<Ventas />} />

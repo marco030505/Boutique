@@ -174,6 +174,38 @@
   border-top: 1px solid var(--color-border);
 }
 
+.sidebar-switch-user-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: none;
+  border: 1px solid transparent;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+  margin-bottom: var(--space-2);
+}
+
+.sidebar-switch-user-btn:hover {
+  background: rgba(212, 168, 67, 0.08);
+  border-color: rgba(212, 168, 67, 0.15);
+  color: var(--color-gold-300);
+}
+
+.sidebar-switch-user-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.75;
+}
+
 .sidebar-logout-btn {
   width: 100%;
   display: flex;

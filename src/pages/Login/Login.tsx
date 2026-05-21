@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate, Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/useAuth";
 import "./Login.css";
 
@@ -136,8 +136,9 @@ const BoutiqueIcon = () => (
 );
 
 export default function Login() {
-  const { login, isAuthenticated } = useAuth();
+  const { login, isAuthenticated, activeSessions } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -145,7 +146,9 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  if (isAuthenticated) {
+  const isAddingNew = location.search.includes("addNew=true");
+
+  if (isAuthenticated && !isAddingNew) {
     return <Navigate to="/dashboard" replace />;
   }
 
@@ -193,7 +196,7 @@ export default function Login() {
 
           <h1 className="login-brand-name">
             Memo's Style
-            <span>&amp; Luca Fashion</span>
+            <span>&amp; Lucia Fashion</span>
           </h1>
           <p className="login-brand-tagline">Sistema de Punto de Venta</p>
 
@@ -219,7 +222,7 @@ export default function Login() {
         </div>
 
         <p className="login-brand-footer">
-          © {new Date().getFullYear()} Memo's Style &amp; Luca Fashion
+          © {new Date().getFullYear()} Memo's Style &amp; Lucia Fashion
         </p>
       </div>
 
@@ -330,6 +333,19 @@ export default function Login() {
                 )}
               </span>
             </button>
+
+            {activeSessions.length > 0 && (
+              <button
+                type="button"
+                id="login-cancel-btn"
+                className="login-cancel-btn"
+                onClick={() => navigate("/switch-user")}
+                disabled={loading}
+                aria-label="Cancelar y volver a cambio de usuario"
+              >
+                Cancelar
+              </button>
+            )}
           </form>
         </div>
       </div>

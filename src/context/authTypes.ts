@@ -10,9 +10,12 @@ export interface AuthSession {
 
 export interface AuthContextType {
   session: AuthSession | null;
+  activeSessions: AuthSession[];
   isAuthenticated: boolean;
   login: (username: string, password: string) => Promise<boolean>;
   logout: () => void;
+  switchSession: (userId: number) => void;
+  removeSession: (userId: number) => void;
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null);
