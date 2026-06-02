@@ -62,6 +62,11 @@
   transition: all 0.2s ease;
 }
 
+.product-form-row select option {
+  background-color: var(--bg-card, #1e1e2d);
+  color: var(--color-text, #ffffff);
+}
+
 .product-form-row input:focus,
 .product-form-row select:focus {
   border-color: var(--color-accent);

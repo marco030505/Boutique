@@ -1,0 +1,73 @@
+/* =====================================================
+   Historial Ventas Page Styles
+   ===================================================== */
+.historial-page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 64px);
+  padding: var(--space-6);
+  background-color: var(--color-bg-base);
+  overflow-y: auto;
+}
+
+.historial-header {
+  margin-bottom: var(--space-5);
+}
+
+.historial-header h2 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.historial-list-container {
+  flex: 1;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  overflow-y: auto;
+}
+
+.historial-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.historial-table th {
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 2px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.historial-table td {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+}
+
+.historial-btn {
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--color-bg-elevated);
+  color: var(--color-gold-400);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.historial-btn:hover {
+  background: rgba(212, 168, 67, 0.1);
+  border-color: var(--color-gold-500);
+}

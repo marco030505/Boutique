@@ -141,6 +141,8 @@ export default function Ventas() {
   const [selectedSize, setSelectedSize] = useState<string>("");
 
   const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
+  const [showCustomerModal, setShowCustomerModal] = useState(false);
+  const [customerName, setCustomerName] = useState("");
   const [payingLoading, setPayingLoading] = useState(false);
   const [payError, setPayError] = useState("");
 
@@ -232,8 +234,15 @@ export default function Ventas() {
 
   const clearCart = () => setCart([]);
 
-  const handlePay = async () => {
+  const handlePrePay = () => {
     if (cart.length === 0) return;
+    setCustomerName("");
+    setPayError("");
+    setShowCustomerModal(true);
+  };
+
+  const handlePay = async () => {
+    setShowCustomerModal(false);
     setPayingLoading(true);
     setPayError("");
 
@@ -244,7 +253,7 @@ export default function Ventas() {
         quantity: item.quantity,
       }));
 
-      await apiCreateSale(items);
+      await apiCreateSale(items, customerName);
       setShowPaymentSuccess(true);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
@@ -505,7 +514,7 @@ export default function Ventas() {
             </button>
             <button
               className="cart-btn cart-btn--pay"
-              onClick={handlePay}
+              onClick={handlePrePay}
               disabled={cart.length === 0 || payingLoading}
             >
               {payingLoading ? "Procesando…" : "Cobrar"}
@@ -566,6 +575,67 @@ export default function Ventas() {
             >
               Agregar al carrito
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Customer Name Modal */}
+      {showCustomerModal && (
+        <div className="payment-modal-overlay" onClick={() => setShowCustomerModal(false)}>
+          <div className="payment-modal" onClick={(e) => e.stopPropagation()} style={{ textAlign: 'left', padding: '24px' }}>
+            <h3 style={{ margin: '0 0 16px 0', color: 'var(--color-text-primary)' }}>Datos del Cliente</h3>
+            <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.9rem', marginBottom: '16px' }}>
+              Ingrese el nombre del cliente. Si lo deja en blanco, se registrará como "Público en General".
+            </p>
+            <input 
+              type="text" 
+              placeholder="Nombre completo (Opcional)"
+              value={customerName}
+              onChange={(e) => setCustomerName(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '12px',
+                background: 'var(--color-bg-base)',
+                border: '1px solid var(--color-border)',
+                borderRadius: '8px',
+                color: 'var(--color-text-primary)',
+                marginBottom: '24px',
+                fontSize: '1rem',
+                outline: 'none'
+              }}
+            />
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <button 
+                onClick={() => setShowCustomerModal(false)}
+                style={{
+                  flex: 1,
+                  padding: '12px',
+                  background: 'transparent',
+                  border: '1px solid rgba(224, 92, 92, 0.3)',
+                  color: '#f08080',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontWeight: 600
+                }}
+              >
+                Cancelar
+              </button>
+              <button 
+                onClick={handlePay}
+                style={{
+                  flex: 2,
+                  padding: '12px',
+                  background: 'linear-gradient(135deg, var(--color-gold-400), var(--color-gold-600))',
+                  border: 'none',
+                  color: '#0a0a0f',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontWeight: 700
+                }}
+              >
+                Confirmar Cobro
+              </button>
+            </div>
           </div>
         </div>
       )}

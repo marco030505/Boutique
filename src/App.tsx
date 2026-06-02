@@ -13,6 +13,9 @@ import SwitchUser from "./pages/SwitchUser/SwitchUser";
 import InventoryMovementsList from "./pages/InventoryMovements/InventoryMovementsList";
 import InventoryMovementCreate from "./pages/InventoryMovements/InventoryMovementCreate";
 import InventoryMovementDetails from "./pages/InventoryMovements/InventoryMovementDetails";
+import Devoluciones from "./pages/Ventas/Devoluciones";
+import HistorialVentas from "./pages/Ventas/HistorialVentas";
+import VentaDetalle from "./pages/Ventas/VentaDetalle";
 
 export default function App() {
   return (
@@ -28,6 +31,9 @@ export default function App() {
             <Route path="/dashboard" element={<DashboardLayout />}>
               <Route index element={<Dashboard />} />
               <Route path="ventas" element={<Ventas />} />
+              <Route path="historial-ventas" element={<HistorialVentas />} />
+              <Route path="historial-ventas/:id" element={<VentaDetalle />} />
+              <Route path="devoluciones" element={<Devoluciones />} />
               <Route path="productos" element={<Productos />} />
               <Route path="productos/nuevo" element={<ProductForm />} />
               <Route path="productos/editar/:id" element={<ProductForm />} />

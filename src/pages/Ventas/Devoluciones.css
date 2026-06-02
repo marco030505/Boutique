@@ -1,0 +1,301 @@
+/* =====================================================
+   Devoluciones Page Styles
+   ===================================================== */
+.devoluciones-page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 64px);
+  padding: var(--space-6);
+  background-color: var(--color-bg-base);
+  overflow-y: auto;
+}
+
+.devoluciones-tabs {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.devoluciones-tab {
+  padding: var(--space-2) var(--space-5);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+  font-size: 0.9rem;
+}
+
+.devoluciones-tab:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-border-hover);
+}
+
+.devoluciones-tab.active {
+  background: rgba(212, 168, 67, 0.12);
+  color: var(--color-gold-400);
+  border-color: rgba(212, 168, 67, 0.4);
+}
+
+.devoluciones-list-container {
+  flex: 1;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  overflow-y: auto;
+}
+
+.devoluciones-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.devoluciones-table th {
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 2px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.devoluciones-table td {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+}
+
+.devoluciones-btn {
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--color-bg-elevated);
+  color: var(--color-gold-400);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.devoluciones-btn:hover:not(:disabled) {
+  background: rgba(212, 168, 67, 0.1);
+  border-color: var(--color-gold-500);
+}
+
+.devoluciones-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Procesar Devolución Layout */
+.devolucion-process-container {
+  display: flex;
+  gap: var(--space-5);
+  height: 100%;
+}
+
+.devolucion-panel {
+  flex: 1;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.devolucion-panel-header {
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.devolucion-panel-header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--color-text-primary);
+  font-family: var(--font-serif);
+}
+
+.devolucion-panel-content {
+  flex: 1;
+  padding: var(--space-5);
+  overflow-y: auto;
+}
+
+.return-item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-3);
+  background: var(--color-bg-elevated);
+}
+
+.return-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.return-item-info strong {
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+}
+
+.return-item-info span, .return-item-info small {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+.return-item-qty {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.return-item-qty button {
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-surface);
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all var(--transition-fast);
+}
+
+.return-item-qty button:hover:not(:disabled) {
+  border-color: var(--color-gold-500);
+  color: var(--color-gold-400);
+  background: rgba(212, 168, 67, 0.08);
+}
+
+.return-item-qty button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.return-item-qty span {
+  color: var(--color-text-primary);
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+}
+
+.devolucion-panel-footer {
+  padding: var(--space-5);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+  color: var(--color-text-secondary);
+}
+
+.total-row span:last-child {
+  color: var(--color-text-primary);
+}
+
+.total-row.credit span:last-child {
+  color: #4caf7d; /* Soft green */
+}
+
+.total-row.charge span:last-child {
+  color: #e57373; /* Soft red */
+}
+
+.total-row.difference {
+  font-size: 1.25rem;
+  border-top: 1px dashed var(--color-border);
+  padding-top: var(--space-3);
+  margin-top: var(--space-2);
+  color: var(--color-text-primary);
+}
+
+.total-row.difference span:last-child {
+  color: var(--color-gold-400);
+}
+
+.process-btn {
+  width: 100%;
+  padding: var(--space-3);
+  background: linear-gradient(135deg, var(--color-gold-400), var(--color-gold-600));
+  color: #0a0a0f;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: var(--space-3);
+  transition: all var(--transition-fast);
+}
+
+.process-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(212, 168, 67, 0.35);
+}
+
+.process-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: var(--color-bg-elevated);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  transition: color var(--transition-fast);
+}
+
+.back-btn:hover {
+  color: var(--color-text-primary);
+}
+
+.devoluciones-select {
+  width: 100%;
+  padding: var(--space-3);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+  margin-bottom: var(--space-4);
+  outline: none;
+}
+
+.devoluciones-select:focus {
+  border-color: var(--color-border-focus);
+}
+
+.devoluciones-select option {
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+}

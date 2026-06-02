@@ -158,10 +158,12 @@ function getInitials(name: string) {
 const PAGE_TITLES: Record<string, { title: string; breadcrumb: string }> = {
   "/dashboard": { title: "Dashboard", breadcrumb: "Inicio" },
   "/dashboard/ventas": { title: "Punto de Venta", breadcrumb: "Ventas" },
+  "/dashboard/historial-ventas": { title: "Historial de Ventas", breadcrumb: "Historial" },
+  "/dashboard/devoluciones": { title: "Devoluciones", breadcrumb: "Devoluciones" },
   "/dashboard/inventario": { title: "Inventario", breadcrumb: "Inventario" },
   "/dashboard/productos": { title: "Productos", breadcrumb: "Catálogo" },
   "/dashboard/inventory-movements": { title: "Movimiento de Inventario", breadcrumb: "Movimientos" },
-  "/dashboard/reportes": { title: "Reportes", breadcrumb: "Reportes" },
+  // "/dashboard/reportes": { title: "Reportes", breadcrumb: "Reportes" },
   "/dashboard/usuarios": {
     title: "Usuarios",
     breadcrumb: "Gestión de usuarios",
@@ -239,6 +241,32 @@ export default function DashboardLayout() {
             </NavLink>
 
             <NavLink
+              id="nav-historial-ventas"
+              to="/dashboard/historial-ventas"
+              className={({ isActive }) =>
+                `sidebar-nav-item${isActive ? " active" : ""}`
+              }
+            >
+              <span className="sidebar-nav-icon">
+                <IconBarChart />
+              </span>
+              Historial de Ventas
+            </NavLink>
+
+            <NavLink
+              id="nav-devoluciones"
+              to="/dashboard/devoluciones"
+              className={({ isActive }) =>
+                `sidebar-nav-item${isActive ? " active" : ""}`
+              }
+            >
+              <span className="sidebar-nav-icon">
+                <IconShoppingBag />
+              </span>
+              Devoluciones
+            </NavLink>
+
+            <NavLink
               id="nav-inventario"
               to="/dashboard/inventario"
               className={({ isActive }) =>
@@ -282,8 +310,8 @@ export default function DashboardLayout() {
             <div className="sidebar-nav-section">
               <p className="sidebar-nav-section-label">Administración</p>
               {[
-                { id: "reportes", label: "Reportes", icon: <IconBarChart /> },
-                { id: "usuarios", label: "Usuarios", icon: <IconUsers /> },
+                // { id: "reportes", label: "Reportes", icon: <IconBarChart /> },
+                // { id: "usuarios", label: "Usuarios", icon: <IconUsers /> },
                 {
                   id: "configuracion",
                   label: "Configuración",

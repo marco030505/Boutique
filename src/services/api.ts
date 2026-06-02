@@ -174,11 +174,11 @@ export interface SaleItem {
   quantity: number;
 }
 
-export async function apiCreateSale(items: SaleItem[]) {
+export async function apiCreateSale(items: SaleItem[], customerName?: string) {
   const res = await fetch(`${API_BASE}/sales`, {
     method: "POST",
     headers: authHeaders(),
-    body: JSON.stringify({ items }),
+    body: JSON.stringify({ items, customerName }),
   });
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
@@ -256,6 +256,25 @@ export async function apiGetInventoryMovements(type?: string, search?: string): 
   return res.json();
 }
 
+export async function apiGetInventoryMovementsReport(filters?: { startDate?: string; endDate?: string; userId?: string; type?: string }) {
+  let url = `${API_BASE}/inventory-movements/report`;
+  
+  if (filters) {
+    const params = new URLSearchParams();
+    if (filters.startDate) params.append("startDate", filters.startDate);
+    if (filters.endDate) params.append("endDate", filters.endDate);
+    if (filters.userId) params.append("userId", filters.userId);
+    if (filters.type) params.append("type", filters.type);
+    
+    const qs = params.toString();
+    if (qs) url += `?${qs}`;
+  }
+
+  const res = await fetch(url, { headers: authHeaders() });
+  if (!res.ok) throw new Error("Error al obtener reporte de inventario");
+  return res.json();
+}
+
 export async function apiGetInventoryMovementDetails(id: number): Promise<InventoryMovement> {
   const res = await fetch(`${API_BASE}/inventory-movements/${id}`, {
     headers: authHeaders(),
@@ -275,6 +294,85 @@ export async function apiCreateInventoryMovement(payload: InventoryMovementPaylo
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
     throw new Error(body.error || "Error al crear el movimiento de inventario");
+  }
+  return res.json();
+}
+
+// ── Additional Sales ──
+export async function apiGetSales(filters?: { startDate?: string; endDate?: string; sellerId?: string }) {
+  let url = `${API_BASE}/sales`;
+  
+  if (filters) {
+    const params = new URLSearchParams();
+    if (filters.startDate) params.append("startDate", filters.startDate);
+    if (filters.endDate) params.append("endDate", filters.endDate);
+    if (filters.sellerId) params.append("sellerId", filters.sellerId);
+    
+    const qs = params.toString();
+    if (qs) url += `?${qs}`;
+  }
+
+  const res = await fetch(url, {
+    headers: authHeaders(),
+  });
+  if (!res.ok) {
+    throw new Error("Error al obtener el historial de ventas");
+  }
+  return res.json();
+}
+
+export async function apiGetSaleDetails(saleId: number) {
+  const res = await fetch(`${API_BASE}/sales/${saleId}`, {
+    headers: authHeaders(),
+  });
+  if (!res.ok) {
+    throw new Error("Error al obtener los detalles de la venta");
+  }
+  return res.json();
+}
+
+// ── Users (Vendedores para filtros) ──
+export async function apiGetUsers() {
+  const res = await fetch(`${API_BASE}/auth/users`, {
+    headers: authHeaders(),
+  });
+  if (!res.ok) {
+    throw new Error("Error al obtener los usuarios");
+  }
+  return res.json();
+}
+
+// ── Returns (Devoluciones) ──
+export async function apiGetReturns() {
+  const res = await fetch(`${API_BASE}/returns`, {
+    headers: authHeaders(),
+  });
+  if (!res.ok) {
+    throw new Error("Error al obtener el historial de devoluciones");
+  }
+  return res.json();
+}
+
+export async function apiGetSaleForReturn(saleId: number) {
+  const res = await fetch(`${API_BASE}/returns/sale/${saleId}`, {
+    headers: authHeaders(),
+  });
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(body.error || "Error al obtener la venta para devolución");
+  }
+  return res.json();
+}
+
+export async function apiCreateReturn(data: { originalSaleId: number; returnedItems: any[]; newItems: any[] }) {
+  const res = await fetch(`${API_BASE}/returns`, {
+    method: "POST",
+    headers: authHeaders(),
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(body.error || "Error al procesar la devolución");
   }
   return res.json();
 }
