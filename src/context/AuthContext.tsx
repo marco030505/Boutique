@@ -1,18 +1,8 @@
 import { useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
-import { findUser } from '../mocks/users';
-import type { MockUser } from '../mocks/users';
 import { AuthContext } from './authTypes';
 import type { AuthSession } from './authTypes';
-
-function serializeSession(user: MockUser): AuthSession {
-  return {
-    id: user.id,
-    username: user.username,
-    name: user.name,
-    role: user.role,
-  };
-}
+import { apiLogin } from '../services/api';
 
 const SESSION_KEY = 'mslf_session';
 const ACTIVE_SESSIONS_KEY = 'mslf_active_sessions';
@@ -49,10 +39,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [activeSessions]);
 
   const login = async (username: string, password: string): Promise<boolean> => {
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    const user = findUser(username.trim(), password);
-    if (user) {
-      const newSession = serializeSession(user);
+    try {
+      const data = await apiLogin(username.trim(), password);
+
+      const newSession: AuthSession = {
+        id: data.session.id,
+        username: data.session.username,
+        name: data.session.name,
+        role: data.session.role,
+        token: data.token,
+      };
+
       setSession(newSession);
       setActiveSessions((prev) => {
         if (prev.some((s) => s.id === newSession.id)) {
@@ -61,8 +58,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return [...prev, newSession];
       });
       return true;
+    } catch {
+      return false;
     }
-    return false;
   };
 
   const switchSession = (userId: number) => {

@@ -1,11 +1,13 @@
 import { createContext } from 'react';
-import type { UserRole } from '../mocks/users';
+
+export type UserRole = 'administrador' | 'vendedor';
 
 export interface AuthSession {
   id: number;
   username: string;
   name: string;
   role: UserRole;
+  token: string;
 }
 
 export interface AuthContextType {

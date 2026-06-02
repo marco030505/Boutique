@@ -160,6 +160,7 @@ const PAGE_TITLES: Record<string, { title: string; breadcrumb: string }> = {
   "/dashboard/ventas": { title: "Punto de Venta", breadcrumb: "Ventas" },
   "/dashboard/inventario": { title: "Inventario", breadcrumb: "Inventario" },
   "/dashboard/productos": { title: "Productos", breadcrumb: "Catálogo" },
+  "/dashboard/inventory-movements": { title: "Movimiento de Inventario", breadcrumb: "Movimientos" },
   "/dashboard/reportes": { title: "Reportes", breadcrumb: "Reportes" },
   "/dashboard/usuarios": {
     title: "Usuarios",
@@ -237,21 +238,44 @@ export default function DashboardLayout() {
               Ventas
             </NavLink>
 
-            <div id="nav-inventario" className="sidebar-nav-item">
+            <NavLink
+              id="nav-inventario"
+              to="/dashboard/inventario"
+              className={({ isActive }) =>
+                `sidebar-nav-item${isActive ? " active" : ""}`
+              }
+            >
               <span className="sidebar-nav-icon">
                 <IconPackage />
               </span>
               Inventario
-              <span className="sidebar-nav-badge">Próximo</span>
-            </div>
+            </NavLink>
 
-            <div id="nav-productos" className="sidebar-nav-item">
+            <NavLink
+              id="nav-productos"
+              to="/dashboard/productos"
+              className={({ isActive }) =>
+                `sidebar-nav-item${isActive ? " active" : ""}`
+              }
+            >
               <span className="sidebar-nav-icon">
                 <IconTag />
               </span>
               Productos
-              <span className="sidebar-nav-badge">Próximo</span>
-            </div>
+            </NavLink>
+
+            <NavLink
+              id="nav-inventory-movements"
+              to="/dashboard/inventory-movements"
+              className={({ isActive }) =>
+                `sidebar-nav-item${isActive ? " active" : ""}`
+              }
+            >
+              <span className="sidebar-nav-icon">
+                <IconBarChart />
+              </span>
+              Movimiento de Inv.
+            </NavLink>
           </div>
 
           {isAdmin && (
